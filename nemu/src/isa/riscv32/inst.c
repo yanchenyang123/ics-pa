@@ -67,7 +67,7 @@ static int decode_exec(Decode *s) {
 
 
 
-//cuo de you    if-else    
+//cuo de you    if-else  movsx  
 //huaiyi de zhi ling you B_type zhongde
   INSTPAT_START();
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(dest) = imm);
