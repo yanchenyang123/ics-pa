@@ -67,7 +67,7 @@ static int decode_exec(Decode *s) {
 
 
 
-//cuo de you   mul-longlong  shift
+//cuo de you   mul-longlong
 //huaiyi de zhi ling you 
   INSTPAT_START();
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(dest) = imm);
