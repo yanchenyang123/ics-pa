@@ -101,24 +101,67 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 }
 
 void *memset(void *s, int c, size_t n) {
-  char *str=s;
-  for(int i=0;i<n;i++)
+  void *str=s;
+  for(size_t i=0;i<n;i++)
     {
-      str[i]=(char)c;
+      *(char *)str=(char)c;
+      str=(char *)str+1;
     }
   return s;
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-  panic("Not implemented");
+  if(dst<src||(char *)src+n<=(char *)dst)
+    {
+      return memcpy(dst,src,n);
+    }
+  else
+    {
+      for(size_t i=1;i<=n;i++)
+      {
+        *(char *)(dst+n-i)=*(char *)(src+n-i);
+      }
+    return dst;
+    }
+  
 }
 
 void *memcpy(void *out, const void *in, size_t n) {
-  panic("Not implemented");
+  void *str=out;
+  for(size_t i=0;i<n;i++)
+    {
+      *(char *)out=*(char *)in;
+      out=(char *)out+1;
+      in=(char *)in+1;
+    }
+  return str;
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-  panic("Not implemented");
+  for(size_t i=0;i<n;i++)
+    {
+      if(*(char *)(s1+i)=='\0'&&*(char *)(s2+i)!='\0')
+        {
+          return -1;
+        }
+      else if(*(char *)(s1+i)!='\0'&&*(char *)(s2+i)=='\0')
+        {
+          return 1;
+        }
+      else if(*(char *)(s1+i)=='\0'&&*(char *)(s2+i)=='\0')
+        {
+          return 0;
+        }
+      if(*(char *)(s1+i)<*(char *)(s2+i))
+        {
+          return -1;
+        }
+      else if(*(char *)(s1+i)>*(char *)(s2+i))
+        {
+          return 1;
+        }
+    }
+  return 0;
 }
 
 #endif
