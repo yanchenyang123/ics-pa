@@ -84,6 +84,7 @@ int sprintf(char *out, const char *fmt, ...) {
           i=i+1;
         }
     }
+  va_end(ap);
   return num;
 }
 
