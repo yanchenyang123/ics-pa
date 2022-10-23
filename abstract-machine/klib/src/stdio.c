@@ -17,8 +17,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 void int_to_str(char *str,int integer,int index)
   {
     int a=0;
-    char str1[10];
-    int n=0;
+    char str1[20];
+    size_t n=0;
     while(integer!=0)
       {
         a=integer%10;
@@ -27,9 +27,9 @@ void int_to_str(char *str,int integer,int index)
         n+=1;
       }
     str1[n]='\0';
-    for(int i=0;i<n;i++)
+    for(size_t i=n-1;i>=0;i--)
       {
-        str[index]=str1[n-i-1];
+        str[index]=str1[i];
         index+=1;
       }
 
