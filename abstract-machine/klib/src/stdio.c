@@ -25,19 +25,19 @@ void int_to_str(char *str,int integer,int index)
           {
             a=integer%10;
             integer/=10;
-            str1[num1]=(char)a+'0';
+            str1[num1]=a+'0';
             num1+=1; 
           }
         else
           {
-            str1[num1]=(char)integer+'0';
+            str1[num1]=integer+'0';
             num1+=1;
             break;
           }
       }
-    for(int i=0;i<num1;i++)
+    for(int j=0;j<num1;j++)
       {
-        str[index]=str1[num1-i-1];
+        str[index]=str1[num1-j-1];
         index+=1;
       }
   }
@@ -74,12 +74,11 @@ int sprintf(char *out, const char *fmt, ...) {
           else if(fmt[i+1]=='s')
             {
               str=va_arg(ap,char*);
-              for(size_t i=0;i<strlen(str);i++)
+              for(size_t j=0;j<strlen(str);j++)
                 {
-                  out[num]=str[i];
+                  out[num]=str[j];
                   num+=1;
                 }
-
             }
           i=i+1;
         }
