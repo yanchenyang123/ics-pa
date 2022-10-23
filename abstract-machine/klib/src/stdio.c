@@ -37,7 +37,7 @@ void int_to_str(char *str,int integer,int index)
       }
     for(int i=0;i<num1;i++)
       {
-        str[index+i]=str1[num1-i-1];
+        str[index]=str1[num1-i-1];
         index+=1;
       }
   }
