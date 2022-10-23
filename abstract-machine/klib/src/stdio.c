@@ -25,12 +25,12 @@ void int_to_str(char *str,int integer,int index)
           {
             a=integer%10;
             integer/=10;
-            str1[num1]=a+'0';
+            str1[num1]=(char)a+'0';
             num1+=1; 
           }
         else
           {
-            str1[num1]=integer+'0';
+            str1[num1]=(char)integer+'0';
             num1+=1;
             break;
           }
