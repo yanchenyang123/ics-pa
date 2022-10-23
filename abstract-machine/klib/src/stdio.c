@@ -69,7 +69,6 @@ int sprintf(char *out, const char *fmt, ...) {
                 {
                   int_to_str(out,integer,num);
                 }
-
             }
           else if(fmt[i+1]=='s')
             {
@@ -79,6 +78,7 @@ int sprintf(char *out, const char *fmt, ...) {
                   out[num]=str[j];
                   num+=1;
                 }
+              out[num]='\0';
             }
           i=i+1;
         }
