@@ -16,30 +16,23 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 void int_to_str(char *str,int integer,int index)
   {
-    int num1=0;
     int a=0;
-    char *str1=NULL;
-    while(true)
+    char str1[10];
+    int n=0;
+    while(integer!=0)
       {
-        if(integer>=10)
-          {
-            a=integer%10;
-            integer/=10;
-            str1[num1]=a+'0';
-            num1+=1; 
-          }
-        else
-          {
-            str1[num1]=integer+'0';
-            num1+=1;
-            break;
-          }
+        a=integer%10;
+        integer=integer/10;
+        str1[n]=(char)(a+'0');
+        n+=1;
       }
-    for(int j=0;j<num1;j++)
+    str1[n]='\0';
+    for(int i=0;i<n;i++)
       {
-        str[index]=str1[num1-j-1];
+        str[index]=str1[n-i-1];
         index+=1;
       }
+
   }
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
