@@ -26,7 +26,7 @@ void int_to_str(char *out1,int integer,int num)
       }
     while(integer)
       {
-        str[i]=integer%10+48;
+        str[i]=(char)(integer%10+'0');
         integer/=10;
         i++;
       }
@@ -79,6 +79,7 @@ int sprintf(char *out, const char *fmt, ...) {
                   *out1++=*str++;
                   num+=1;
                 }
+              *out1='\0';
             }
         }
       
