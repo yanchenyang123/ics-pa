@@ -23,7 +23,6 @@ void int_to_str(char *str,int integer,int index)
         integer/=10;
         n+=1;
       }
-    str[n]='\0';
     for(size_t i=0;i<n/2;i++)
       {
         str[index+i]=str[index+i]+str[index+n-1-i];
@@ -61,7 +60,7 @@ int sprintf(char *out, const char *fmt, ...) {
                   int_to_str(out,integer,num);
                 }
             }
-          else if(fmt[i+1]=='s')
+      else if(fmt[i+1]=='s')
             {
               str=va_arg(ap,char*);
               for(size_t j=0;j<strlen(str);j++)
