@@ -56,8 +56,8 @@ int sprintf(char *out, const char *fmt, ...) {
         }
       else
         {
-          fmt+=1;
-          if(*fmt=='d')
+          
+          if(*++fmt=='d')
             {
               integer=va_arg(ap,int);
               if(integer<0)
@@ -71,7 +71,7 @@ int sprintf(char *out, const char *fmt, ...) {
                   int_to_str(out1,integer,num);
                 }
             }
-          else if(*fmt=='s')
+          else if(*++fmt=='s')
             {
               str=va_arg(ap,char *);
               while(*str)
