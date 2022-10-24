@@ -63,12 +63,11 @@ int sprintf(char *out, const char *fmt, ...) {
       else if(fmt[i+1]=='s')
             {
               str=va_arg(ap,char*);
-              for(size_t j=0;j<strlen(str);j++)
+              while(*str!='\0')
                 {
-                  out[num]=str[j];
-                  num+=1;
+                  *out++=*str++;
                 }
-              out[num]='\0';
+              *out='\0';
             }
           i=i+1;
         }
