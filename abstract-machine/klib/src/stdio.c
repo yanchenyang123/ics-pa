@@ -13,64 +13,75 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
   panic("Not implemented");
 }
 
-
-void int_to_str(char *str,int integer,int index)
+void int_to_str(char *out1,int integer,int num)
   {
-    size_t n=0;
+    char str[10]={0};
+    int i=0;
+    if(integer==0)
+      {
+        *out1++='0';
+        num+=1;
+        *out1='\0';
+        return ;
+      }
     while(integer)
       {
-        str[index+n]=integer%10+48;
+        str[i]=integer%10+48;
         integer/=10;
-        n+=1;
+        i++;
       }
-    for(size_t i=0;i<n/2;i++)
+    for(int j=0;j<i;j++)
       {
-        str[index+i]=str[index+i]+str[index+n-1-i];
-        str[index+n-1-i]=str[index+i]-str[index+n-1-i];
-        str[index+i]=str[index+i]-str[index+n-1-i];
+        *out1++=str[i-1-j];
+        num+=1;
       }
-    index+=n;  
+    *out1='\0';
+    return ;
+
   }
+
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
+  char *out1=out;
   int num=0;
   va_start(ap,fmt);
   int integer;
   char *str=NULL;
-  for(size_t i=0;fmt[i]!='\0';i++)
+  while(*fmt!='\0')
     {
-      if(fmt[i]!='%')
+      if(*fmt!='%')
         {
-          out[num]=fmt[i];
+          *out1++=*fmt++;
           num+=1;
         }
       else
         {
-          if(fmt[i+1]=='d')
+          fmt+=1;
+          if(*fmt=='d')
             {
               integer=va_arg(ap,int);
               if(integer<0)
                 {
-                  out[num]='-';
+                  *out1++='-';
                   num+=1;
-                  int_to_str(out,-integer,num);
+                  int_to_str(out1,integer,num);
                 }
               else
                 {
-                  int_to_str(out,integer,num);
+                  int_to_str(out1,integer,num);
                 }
             }
-      else if(fmt[i+1]=='s')
+          else if(*fmt=='s')
             {
-              str=va_arg(ap,char*);
-              while(*str!='\0')
+              str=va_arg(ap,char *);
+              while(*str)
                 {
-                  *out++=*str++;
+                  *out1++=*str++;
+                  num+=1;
                 }
-              *out='\0';
             }
-          i=i+1;
         }
+      
     }
   va_end(ap);
   return num;
