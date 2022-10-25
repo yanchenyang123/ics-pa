@@ -56,7 +56,7 @@ int sprintf(char *out, const char *fmt, ...) {
         }
       else
         {
-          fmt+=4;
+          fmt++;
           if(*fmt=='d')
             {
               integer=va_arg(ap,int);
