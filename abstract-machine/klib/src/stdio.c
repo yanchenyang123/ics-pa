@@ -2,7 +2,7 @@
 #include <klib.h>
 #include <klib-macros.h>
 #include <stdarg.h>
-
+#include <string.h>
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
@@ -73,12 +73,8 @@ int sprintf(char *out, const char *fmt, ...) {
           else if(*++fmt=='s')
             {
               str=va_arg(ap,char *);
-              while(*str)
-                {
-                  *out1++=*str++;
-                  num+=1;
-                }
-              *out1='\0';
+              num+=strlen(str);
+              strcat(out1,str);
             }
         }
       
