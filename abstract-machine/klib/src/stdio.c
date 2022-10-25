@@ -52,6 +52,7 @@ int sprintf(char *out, const char *fmt, ...) {
       if(*fmt!='%')
         {
           *out1++=*fmt++;
+          *out1='\0';
         }
       else
         {
@@ -70,6 +71,7 @@ int sprintf(char *out, const char *fmt, ...) {
                   *out1++=(char)((integer/pow(i))+'0');
                   integer=integer%pow(i);
                 }
+              *out1='\0';
             }
           else if(*fmt=='s')
             {
@@ -78,6 +80,7 @@ int sprintf(char *out, const char *fmt, ...) {
                 {
                   *out1++=*str++;
                 }
+              *out1='\0';
             }
         }
     }
