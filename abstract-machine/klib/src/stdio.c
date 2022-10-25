@@ -45,8 +45,8 @@ int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
   char *out1=out;
   va_start(ap,fmt);
-  int integer;
-  char *str;
+  int integer=0;
+  char *str=NULL;
   while(*fmt!='\0')
     {
       if(*fmt!='%')
