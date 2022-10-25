@@ -32,7 +32,7 @@ int number_of_int(int integer)
 
 int pow(int n)
   {
-    int a=10;
+    int a=1;
     for(int j=0;j<n;j++)
       {
         a*=10;
