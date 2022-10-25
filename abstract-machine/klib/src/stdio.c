@@ -46,7 +46,7 @@ int sprintf(char *out, const char *fmt, ...) {
   int num=0;
   va_start(ap,fmt);
   int integer;
-  char *str=NULL;
+  char *str;
   while(*fmt!='\0')
     {
       if(*fmt!='%')
@@ -56,7 +56,6 @@ int sprintf(char *out, const char *fmt, ...) {
         }
       else
         {
-          
           if(*++fmt=='d')
             {
               integer=va_arg(ap,int);
