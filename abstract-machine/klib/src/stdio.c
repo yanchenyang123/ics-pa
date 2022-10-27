@@ -39,7 +39,22 @@ int pow(int n)
       }
     return a;
   }
-
+void d_printf(va_list ap,int integer,char *out1)
+  {
+    integer=va_arg(ap,int);
+              if(integer<0)
+                {
+                  *out1++='-';
+                  integer=-integer;
+                }
+              int index=number_of_int(integer);
+              for(int i=index;i>=0;i--)
+                {
+                  *out1++=(char)((integer/pow(i))+'0');
+                  integer=integer%pow(i);
+                }
+              *out1='\0';
+  }
 
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
@@ -59,19 +74,7 @@ int sprintf(char *out, const char *fmt, ...) {
           fmt++;
           if(*fmt=='d')
             {
-              integer=va_arg(ap,int);
-              if(integer<0)
-                {
-                  *out1++='-';
-                  integer=-integer;
-                }
-              int index=number_of_int(integer);
-              for(int i=index;i>=0;i--)
-                {
-                  *out1++=(char)((integer/pow(i))+'0');
-                  integer=integer%pow(i);
-                }
-              *out1='\0';
+              d_printf(ap,integer,out1);
             }
           else if(*fmt=='s')
             {
