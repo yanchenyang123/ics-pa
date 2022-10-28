@@ -8,6 +8,7 @@ deps_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/memory/paddr.
     $(wildcard include/config/msize.h) \
     $(wildcard include/config/mbase.h) \
     $(wildcard include/config/mem/random.h) \
+    $(wildcard include/config/mtrace.h) \
     $(wildcard include/config/device.h) \
   /home/ycy/ics2022/nemu/include/memory/host.h \
     $(wildcard include/config/isa64.h) \
