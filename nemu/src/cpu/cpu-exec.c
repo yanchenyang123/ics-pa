@@ -23,7 +23,7 @@
  * This is useful when you use the `si' command.
  * You can modify this value as you want.
  */
-#define MAX_INST_TO_PRINT 130
+#define MAX_INST_TO_PRINT 10
 #define iringbuf 0
 #define MAX_Iringbuf_Size 20
 
@@ -49,7 +49,13 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
 
+#ifdef iringbuf
+  int index=0;
+  char *iringbu[MAX_Iringbuf_Size]={NULL};
+  strcpy(iringbu[index],_this->logbuf);
+  index=(index+1)%MAX_Iringbuf_Size;
 
+#endif
 
 
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
