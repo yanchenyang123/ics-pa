@@ -46,6 +46,7 @@ int printf(const char *fmt, ...) {
         }
       else
         {
+          assert(0);
           fmt++;
           if(*fmt++=='s')
             {
