@@ -95,7 +95,7 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
 
   std::string s;
   raw_string_ostream os(s);
-  if(1==2)
+
   gIP->printInst(&inst, pc, "", *gSTI, os);
 
   int skip = s.find_first_not_of('\t');
