@@ -65,10 +65,9 @@ int printf(const char *fmt, ...) {
                   integer=-integer;
                 }
               int index=number_of_int(integer);
-              assert(index<0);
               for(int i=index;i>=0;i--)
                 {
-                  putch((integer/pow(i)+'0'));
+                  putch(integer/pow(i)+48);
                   integer%=pow(i);
                 }
             }
