@@ -58,6 +58,7 @@ int printf(const char *fmt, ...) {
           else if(*fmt++=='d')
             {
               integer=va_arg(ap,int);
+              putch('1');
               if(integer<0)
                 {
                   putch('-');
