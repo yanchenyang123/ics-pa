@@ -59,6 +59,7 @@ int printf(const char *fmt, ...) {
             {
 
               integer=va_arg(ap,int);
+              
               if(integer<0)
                 {
                   putch('-');
@@ -67,6 +68,7 @@ int printf(const char *fmt, ...) {
               int index=number_of_int(integer);
               for(int i=index;i>=0;i--)
                 {
+                  putch('2');
                   putch(integer/pow(i)+48);
                   integer%=pow(i);
                 }
