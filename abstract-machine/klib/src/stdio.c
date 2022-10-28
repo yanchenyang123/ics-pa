@@ -37,7 +37,7 @@ int printf(const char *fmt, ...) {
   va_list ap;
   va_start(ap,fmt);
   char *s;
-  int integer;
+  int integer=0;
   while(*fmt!='\0')
     {
       if(*fmt!='%')
@@ -66,7 +66,7 @@ int printf(const char *fmt, ...) {
               int index=number_of_int(integer);
               for(int i=index;i>=0;i--)
                 {
-                  putch('1');
+                  putch((char)((integer/pow(i))+'0'));
                   integer=integer%pow(i);
                 }
             }
