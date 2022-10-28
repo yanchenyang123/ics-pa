@@ -57,6 +57,7 @@ int printf(const char *fmt, ...) {
             }
           else if(*fmt++=='d')
             {
+              
               integer=va_arg(ap,int);
               if(integer<0)
                 {
