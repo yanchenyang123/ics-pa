@@ -46,20 +46,9 @@ int printf(const char *fmt, ...) {
         }
       else
         {
-          assert(0);
           fmt++;
-          if(*fmt++=='s')
+          if(*fmt++=='d')
             {
-              s=va_arg(ap,char *);
-              while(*s)
-                {
-                  putch(*s++);
-                }    
-            }
-          else if(*fmt++=='d')
-            {
-
-              assert(0);
               integer=va_arg(ap,int);
               
               if(integer<0)
@@ -70,10 +59,17 @@ int printf(const char *fmt, ...) {
               int index=number_of_int(integer);
               for(int i=index;i>=0;i--)
                 {
-                  putch('2');
                   putch(integer/pow(i)+48);
                   integer%=pow(i);
                 }
+            }
+          else if(*fmt++=='s')
+            {
+              s=va_arg(ap,char *);
+              while(*s)
+                {
+                  putch(*s++);
+                }    
             }
         }
     }
