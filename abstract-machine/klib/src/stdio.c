@@ -5,11 +5,28 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+  va_list ap;
+  va_start(ap,fmt);
+  while(*fmt!='\0')
+    {
+      if(*fmt!='%')
+        {
+          putch(*fmt++);
+        }
+      else
+        {
+          fmt++;
+          if(*fmt=='d')
+            {
+              
+            }
+        }
+    }
+  return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
+  panic("Not implemented"); 
 }
 
 int number_of_int(int integer)
@@ -38,22 +55,6 @@ int pow(int n)
         a*=10;
       }
     return a;
-  }
-void d_printf(va_list ap,int integer,char *out1)
-  {
-    integer=va_arg(ap,int);
-              if(integer<0)
-                {
-                  *out1++='-';
-                  integer=-integer;
-                }
-              int index=number_of_int(integer);
-              for(int i=index;i>=0;i--)
-                {
-                  *out1++=(char)((integer/pow(i))+'0');
-                  integer=integer%pow(i);
-                }
-              *out1='\0';
   }
 
 int sprintf(char *out, const char *fmt, ...) {
