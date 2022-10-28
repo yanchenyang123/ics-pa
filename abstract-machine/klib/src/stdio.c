@@ -63,7 +63,7 @@ int printf(const char *fmt, ...) {
                   integer%=pow(i);
                 }
             }
-          else if(*fmt++=='s')
+          else
             {
               s=va_arg(ap,char *);
               while(*s)
