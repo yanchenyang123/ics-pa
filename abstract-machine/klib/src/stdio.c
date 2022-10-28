@@ -4,30 +4,6 @@
 #include <stdarg.h>
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int printf(const char *fmt, ...) {
-  va_list ap;
-  va_start(ap,fmt);
-  while(*fmt!='\0')
-    {
-      if(*fmt!='%')
-        {
-          putch(*fmt++);
-        }
-      else
-        {
-          fmt++;
-          if(*fmt=='d')
-            {
-              
-            }
-        }
-    }
-  return 0;
-}
-
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented"); 
-}
 
 int number_of_int(int integer)
   {
@@ -56,6 +32,53 @@ int pow(int n)
       }
     return a;
   }
+
+int printf(const char *fmt, ...) {
+  va_list ap;
+  va_start(ap,fmt);
+  char *s;
+  int integer;
+  while(*fmt!='\0')
+    {
+      if(*fmt!='%')
+        {
+          putch(*fmt++);
+        }
+      else
+        {
+          fmt++;
+          if(*fmt++=='s')
+            {
+              s=va_arg(ap,char *);
+              while(*s)
+                {
+                  putch(*s++);
+                }    
+            }
+          else if(*fmt++=='d')
+            {
+              integer=va_arg(ap,int);
+              if(integer<0)
+                {
+                  putch('-');
+                  integer=-integer;
+                }
+              int index=number_of_int(integer);
+              for(int i=index;i>=0;i--)
+                {
+                  putch((char)((integer/pow(i))+'0'));
+                  integer=integer%pow(i);
+                }
+            }
+        }
+    }
+  return 0;
+}
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
+  panic("Not implemented"); 
+}
+
 
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
