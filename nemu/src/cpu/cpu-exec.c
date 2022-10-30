@@ -25,17 +25,25 @@
 #define MAX_INST_TO_PRINT 10
 
 #define MAX_Iringbuf_Size 20
-static bool Iringbuf=true;
+static bool Iringbuf=false;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
-static char *iringbuf[MAX_Iringbuf_Size];
-#ifdef CONFIG_IRINGBUF
-  int num=0;
-#endif
 
+#ifdef CONFIG_IRINGBUF
+  static char *iringbuf[MAX_Iringbuf_Size];
+  int num=0;
+  void iringbuf_init_();
+#endif
+void iringbuf_init_()
+  {
+    for(int i=0;i<MAX_Iringbuf_Size;i++)
+      {
+        iringbuf[i]=NULL;
+      }
+  }
 
 paddr_t expr(char *e,bool *success);
 void init_wp_pool();
