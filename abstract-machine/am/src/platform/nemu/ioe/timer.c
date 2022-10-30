@@ -2,12 +2,11 @@
 #include <nemu.h>
 #include <stdio.h>
 #include <riscv/riscv.h>
-void __am_timer_init() {
+void __am_timer_init() { 
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
-  printf("1\n");
-  inl(RTC_ADDR);
+  uptime->us=1;
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
