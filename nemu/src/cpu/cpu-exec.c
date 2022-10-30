@@ -61,8 +61,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 
 #ifdef CONFIG_IRINGBUF
-  puts("1\n");
   iringbuf[num]=_this->logbuf;
+  puts(iringbuf[num]);
   num=(num+1)%MAX_Iringbuf_Size;  
 #endif
   if(Iringbuf)
