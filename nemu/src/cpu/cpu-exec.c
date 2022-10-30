@@ -25,7 +25,7 @@
 #define MAX_INST_TO_PRINT 10
 
 #define MAX_Iringbuf_Size 20
-static bool Iringbuf=false;
+static bool Iringbuf=true;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
@@ -62,7 +62,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 #ifdef CONFIG_IRINGBUF
   iringbuf[num]=_this->logbuf;
-  puts(iringbuf[num]);
   num=(num+1)%MAX_Iringbuf_Size;  
 #endif
   if(Iringbuf)
@@ -70,6 +69,10 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
       iringbuf_init_();
       for(int i=0;i<MAX_Iringbuf_Size;i++)
         {
+          if(iringbuf[(i+num)%MAX_Iringbuf_Size]==NULL)
+            {
+              break;
+            }
           puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
         }
     }
