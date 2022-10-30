@@ -25,7 +25,7 @@
 #define MAX_INST_TO_PRINT 10
 
 #define MAX_Iringbuf_Size 20
-static bool Iringbuf=false;
+static bool Iringbuf=true;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
