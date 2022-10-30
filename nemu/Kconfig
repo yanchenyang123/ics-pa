@@ -142,10 +142,24 @@ config ITRACE
   default y
 
 
+
+
+
 config MTRACE
   depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
   bool "Enable memory tracer"
   default y
+
+
+config IRINGBUF
+  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
+  bool "Enable iringbuf tracer"
+  default y
+
+
+
+
+
 
 
 

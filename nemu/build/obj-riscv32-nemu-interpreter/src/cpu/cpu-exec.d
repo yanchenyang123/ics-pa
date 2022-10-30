@@ -3,6 +3,7 @@ cmd_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/cpu/cpu-exec.o
 source_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/cpu/cpu-exec.o := src/cpu/cpu-exec.c
 
 deps_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/cpu/cpu-exec.o := \
+    $(wildcard include/config/iringbuf.h) \
     $(wildcard include/config/itrace/cond.h) \
     $(wildcard include/config/itrace.h) \
     $(wildcard include/config/difftest.h) \

@@ -25,14 +25,16 @@
 #define MAX_INST_TO_PRINT 10
 
 #define MAX_Iringbuf_Size 20
-
+static bool Iringbuf=false;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
-
-
+static char *iringbuf[MAX_Iringbuf_Size];
+#ifdef CONFIG_IRINGBUF
+  int num=0;
+#endif
 
 
 paddr_t expr(char *e,bool *success);
@@ -48,6 +50,21 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
+
+
+#ifdef CONFIG_IRINGBUF
+  iringbuf[num]=_this->logbuf;
+  num=(num+1)%MAX_Iringbuf_Size;  
+#endif
+  if(Iringbuf)
+    {
+      for(int i=0;i<MAX_Iringbuf_Size;i++)
+        {
+          puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
+        }
+    }
+
+
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   if(bianhua_())
     {
