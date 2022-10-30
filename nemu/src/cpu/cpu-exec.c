@@ -24,19 +24,20 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-#define MAX_Iringbuf_Size 20
-static bool Iringbuf=true;
-
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
 #ifdef CONFIG_IRINGBUF
+  #define MAX_Iringbuf_Size 20
+  static bool Iringbuf=false;
   static char *iringbuf[MAX_Iringbuf_Size];
   int num=0;
   void iringbuf_init_();
 #endif
+
+
 void iringbuf_init_()
   {
     for(int i=0;i<MAX_Iringbuf_Size;i++)
@@ -161,6 +162,7 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
+      Iringbuf=true;
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
