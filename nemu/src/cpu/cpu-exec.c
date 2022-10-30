@@ -25,12 +25,12 @@
 #define MAX_INST_TO_PRINT 10
 
 #define MAX_Iringbuf_Size 20
-static bool Iringbuf=false;
+static bool Iringbuf=true;
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
-static bool g_print_step = true;
+static bool g_print_step = false;
 
 #ifdef CONFIG_IRINGBUF
   static char *iringbuf[MAX_Iringbuf_Size];
