@@ -66,6 +66,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
   if(Iringbuf)
     {
+      iringbuf_init_();
       for(int i=0;i<MAX_Iringbuf_Size;i++)
         {
           puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
