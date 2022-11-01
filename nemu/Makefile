@@ -13,10 +13,6 @@
 # See the Mulan PSL v2 for more details.
 #**************************************************************************************/
 
-ifdef CONFIG_CC
-CONFIG_TARGET_AM=y
-endif
-
 
 # Sanity check
 ifeq ($(wildcard $(NEMU_HOME)/src/nemu-main.c),)
