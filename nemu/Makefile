@@ -13,7 +13,7 @@
 # See the Mulan PSL v2 for more details.
 #**************************************************************************************/
 
-ifdef ($(ARCH),)
+ifdef CONFIG_CC
 CONFIG_TARGET_AM=y
 endif
 
