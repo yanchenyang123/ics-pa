@@ -15,7 +15,7 @@
 
 #include<common.h>
 #include "isa.h"
-
+#define CONFIG_TARGET_AM y
 void init_monitor(int, char *[]);
 void am_init_monitor();
 void engine_start();
