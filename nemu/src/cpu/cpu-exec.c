@@ -37,7 +37,7 @@ static bool g_print_step = false;
   void iringbuf_init_();
 #endif
 
-
+#ifdef CONFIG_IRINGBUF
 void iringbuf_init_()
   {
     for(int i=0;i<MAX_Iringbuf_Size;i++)
@@ -45,7 +45,7 @@ void iringbuf_init_()
         iringbuf[i]=NULL;
       }
   }
-
+#endif
 paddr_t expr(char *e,bool *success);
 void init_wp_pool();
 void sdb_mainloop();
@@ -65,7 +65,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   iringbuf[num]=_this->logbuf;
   num=(num+1)%MAX_Iringbuf_Size;  
 #endif
-  if(Iringbuf)
+
+ /* if(Iringbuf)
     {
       iringbuf_init_();
       for(int i=0;i<MAX_Iringbuf_Size;i++)
@@ -77,7 +78,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
           puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
         }
     }
-
+*/
 
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   if(bianhua_())
@@ -162,7 +163,6 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
-      Iringbuf=true;
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
