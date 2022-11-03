@@ -129,6 +129,7 @@ void assert_fail_msg() {
   isa_reg_display();
   statistic();
 #ifdef CONFIG_IRINGBUF
+  puts("THe 20 instructions before the error instruction:\n");
   Iringbuf=true;
   if(Iringbuf)
     {
