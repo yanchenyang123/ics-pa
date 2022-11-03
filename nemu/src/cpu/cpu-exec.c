@@ -99,6 +99,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 
 #ifdef CONFIG_IRINGBUF
   iringbuf[num]=s->logbuf;
+  puts(s->logbuf);
   num=(num+1)%MAX_Iringbuf_Size;
 #endif
 }
