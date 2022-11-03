@@ -139,6 +139,7 @@ void assert_fail_msg() {
             {
               break;
             }
+          printf("%d\n",i);
           puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
         }
     }
