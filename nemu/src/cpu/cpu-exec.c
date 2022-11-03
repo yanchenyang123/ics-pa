@@ -29,13 +29,13 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
-
-#define MAX_Iringbuf_Size 20
-static bool Iringbuf=false;
-static char *iringbuf[MAX_Iringbuf_Size];
-int num=0;
-void iringbuf_init_();
-
+#ifdef CONFIG_IRINGBUF
+  #define MAX_Iringbuf_Size 20
+  static bool Iringbuf=false;
+  static char *iringbuf[MAX_Iringbuf_Size];
+  static int num=0;
+  void iringbuf_init_();
+#endif
 
 #ifdef CONFIG_IRINGBUF
 void iringbuf_init_()
