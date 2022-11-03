@@ -91,17 +91,29 @@ static void exec_once(Decode *s, vaddr_t pc) {
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
-#ifdef CONFIG_IRINGBUF
-  iringbuf[num]=p;
-  num=(num+1)%MAX_Iringbuf_Size;  
-#endif
+
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 #endif
 
-
-
+#ifdef CONFIG_IRINGBUF
+#ifdef CONFIG_ITRACE
+  iringbuf[num]=p;
+  num=(num+1)%MAX_Iringbuf_Size;
+#else
+  char *p=NULL;
+  p+=snprintf(p,128,FMT_WORD":",s->pc);
+  int ilen=s->snpc-s->pc;
+  int i;
+  uint8_t *inst = (uint8_t *)&s->isa.inst.val;
+  for (i = ilen - 1; i >= 0; i --) {
+    p += snprintf(p, 4, " %02x", inst[i]);
+  }
+  iringbuf[num]=p;
+  num=(num+1)%MAX_Iringbuf_Size;
+#endif
+#endif
 }
 
 static void execute(uint64_t n) {
