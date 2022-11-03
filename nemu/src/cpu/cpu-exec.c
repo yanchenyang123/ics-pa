@@ -61,14 +61,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
 
 
-#ifdef CONFIG_IRINGBUF
-  printf("%d\n",num);
-  iringbuf[num]=_this->logbuf;
-  num=(num+1)%MAX_Iringbuf_Size;  
-#endif
-
-
-
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   if(bianhua_())
     {
@@ -104,6 +96,12 @@ static void exec_once(Decode *s, vaddr_t pc) {
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 #endif
+
+#ifdef CONFIG_IRINGBUF
+  iringbuf[num]=s->logbuf;
+  num=(num+1)%MAX_Iringbuf_Size;  
+#endif
+
 }
 
 static void execute(uint64_t n) {
