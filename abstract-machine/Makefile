@@ -7,7 +7,7 @@ html:
 
 
 
-CONFIG_TARGET_AM:=y
+CONFIG_TARGET_AM=y
 
 
 ## 1. Basic Setup and Checks
