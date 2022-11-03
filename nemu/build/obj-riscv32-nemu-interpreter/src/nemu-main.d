@@ -4,6 +4,7 @@ source_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/nemu-main.o
 
 deps_/home/ycy/ics2022/nemu/build/obj-riscv32-nemu-interpreter/src/nemu-main.o := \
     $(wildcard include/config/target/am.h) \
+    $(wildcard include/config/iringbuf.h) \
   /home/ycy/ics2022/nemu/include/common.h \
     $(wildcard include/config/mbase.h) \
     $(wildcard include/config/msize.h) \

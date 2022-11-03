@@ -29,13 +29,13 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 
-#ifdef CONFIG_IRINGBUF
-  #define MAX_Iringbuf_Size 20
-  static bool Iringbuf=false;
-  static char *iringbuf[MAX_Iringbuf_Size];
-  int num=0;
-  void iringbuf_init_();
-#endif
+
+#define MAX_Iringbuf_Size 20
+static bool Iringbuf=false;
+static char *iringbuf[MAX_Iringbuf_Size];
+int num=0;
+void iringbuf_init_();
+
 
 #ifdef CONFIG_IRINGBUF
 void iringbuf_init_()
@@ -66,19 +66,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   num=(num+1)%MAX_Iringbuf_Size;  
 #endif
 
- /* if(Iringbuf)
-    {
-      iringbuf_init_();
-      for(int i=0;i<MAX_Iringbuf_Size;i++)
-        {
-          if(iringbuf[(i+num)%MAX_Iringbuf_Size]==NULL)
-            {
-              break;
-            }
-          puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
-        }
-    }
-*/
+
 
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
   if(bianhua_())
@@ -140,6 +128,20 @@ static void statistic() {
 void assert_fail_msg() {
   isa_reg_display();
   statistic();
+#ifdef CONFIG_IRINGBUF
+  Iringbuf=true;
+  if(Iringbuf)
+    {
+      for(int i=0;i<MAX_Iringbuf_Size;i++)
+        {
+          if(iringbuf[(i+num)%MAX_Iringbuf_Size]==NULL)
+            {
+              break;
+            }
+          puts(iringbuf[(i+num)%MAX_Iringbuf_Size]);
+        }
+    }
+#endif
 }
 
 /* Simulate how the CPU works. */
