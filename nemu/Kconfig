@@ -152,7 +152,7 @@ config MTRACE
 
 
 config IRINGBUF
-  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
+  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER &&ITRACE
   bool "Enable iringbuf tracer"
   default y
 
