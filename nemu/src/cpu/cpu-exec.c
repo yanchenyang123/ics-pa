@@ -32,7 +32,7 @@ static bool g_print_step = false;
 #ifdef CONFIG_IRINGBUF
   #define MAX_Iringbuf_Size 20
   static bool Iringbuf=false;
-  static char *iringbuf[MAX_Iringbuf_Size];
+  static char iringbuf[MAX_Iringbuf_Size][128];
   static int num=0;
   void iringbuf_init_();
 #endif
@@ -42,7 +42,7 @@ void iringbuf_init_()
   {
     for(int i=0;i<MAX_Iringbuf_Size;i++)
       {
-        iringbuf[i]=NULL;
+        iringbuf[i][0]='\0';
       }
   }
 #endif
