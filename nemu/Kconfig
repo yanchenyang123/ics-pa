@@ -156,7 +156,10 @@ config IRINGBUF
   bool "Enable iringbuf tracer"
   default y
 
-
+config FTRACE
+  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER &&ITRACE
+  bool "Enable function tracer"
+  default y
 
 
 
