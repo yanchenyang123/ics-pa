@@ -3,14 +3,12 @@
 #include <stdio.h>
 #include <riscv/riscv.h>
 
-
-
 void __am_timer_init() { 
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
   
-  inl(0xa0000048);
+  uptime->us=inl(RTC_ADDR);
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
