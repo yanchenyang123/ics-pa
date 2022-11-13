@@ -9,7 +9,7 @@ void __am_timer_init() {
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
-  uptime->us=1000000000;
+  uptime->us=10000;
   
 
 }
