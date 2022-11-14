@@ -8,8 +8,7 @@ void __am_timer_init() {
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
- uptime->us=1000000*(inl(RTC_ADDR)-begin_time);
-    printf("%ld\n",uptime->us);
+ uptime->us=1000000*(inl(RTC_ADDR));
 
 }
 
