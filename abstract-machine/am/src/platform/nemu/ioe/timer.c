@@ -4,12 +4,12 @@
 #include <riscv/riscv.h>
 //static int begin_time;
 void __am_timer_init() { 
-  inl(RTC_ADDR);
+
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
-//(inl(RTC_ADDR));
-
+  inl(RTC_ADDR);
+  outl(RTC_ADDR,1000000);
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
