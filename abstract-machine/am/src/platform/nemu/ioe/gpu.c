@@ -1,5 +1,7 @@
 #include <am.h>
 #include <nemu.h>
+#include<stdio.h>
+#include <riscv/riscv.h>
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 //static int w_=0;
 //static int h_=0;
