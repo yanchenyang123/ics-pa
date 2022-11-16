@@ -1,6 +1,6 @@
 #include <am.h>
 #include <nemu.h>
-
+#include<assert.h>
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 static int w_=0;
 static int h_=0;
@@ -13,6 +13,7 @@ static int h_=0;
 #endif
 
 void __am_gpu_init() {
+  assert(w_==0);
   int i;
   int w=w_;
   int h=h_;
@@ -24,7 +25,7 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width =w_ , .height =h_ ,
+    .width =400 , .height =h_ ,
     .vmemsz = 0
   };
 }
