@@ -31,7 +31,8 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
-  ctl->pixels=(uint32_t *)(uintptr_t)FB_ADDR;
+  uint32_t *fb=(uint32_t *)(uintptr_t)FB_ADDR;
+  for(int i=0;i<400*300;i++) fb[i]=100;
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
