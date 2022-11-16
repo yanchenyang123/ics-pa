@@ -2,8 +2,8 @@
 #include <nemu.h>
 #include<assert.h>
 #define SYNC_ADDR (VGACTL_ADDR + 4)
-static int w_=0;
-static int h_=0;
+//static int w_=0;
+//static int h_=0;
 #ifdef SCREEN_W
   w_=SCREEN_W
 #endif
@@ -13,10 +13,9 @@ static int h_=0;
 #endif
 
 void __am_gpu_init() {
-  assert(w_==0);
   int i;
-  int w=w_;
-  int h=h_;
+  int w=400;
+  int h=300;
   uint32_t *fb=(uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0;i<w*h;i++) fb[i]=i;
   outl(SYNC_ADDR,1);
