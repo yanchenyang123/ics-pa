@@ -14,8 +14,8 @@
 
 void __am_gpu_init() {
   int i;
-  int w=400;
-  int h=300;
+  int w=800;
+  int h=600;
   uint32_t *fb=(uint32_t *)(uintptr_t)FB_ADDR;
   for(i=0;i<w*h;i++) fb[i]=i;
   outl(SYNC_ADDR,1);
@@ -24,7 +24,7 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width =400 , .height =300,
+    .width =800 , .height =600,
     .vmemsz = 0
   };
 }
