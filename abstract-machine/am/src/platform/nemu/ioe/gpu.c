@@ -32,7 +32,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   uint32_t *fb=(uint32_t *)(uintptr_t)FB_ADDR;
-  fb[(ctl->x)*(ctl->h)+(ctl->y)]=((uint32_t *)(uintptr_t)ctl->pixels)[(ctl->x)*(ctl->w)+(ctl->y)];
+  fb[(ctl->x)*(ctl->h)+(ctl->y)]=((uint32_t *)(uintptr_t)ctl->pixels)[(ctl->x)*(ctl->h)+(ctl->y)];
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
